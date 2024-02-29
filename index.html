@@ -5,10 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Tube</title>
+
+    <!-- Tailwind & DaisyUI cdn link -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        .inter{
+            font-family: "Inter", sans-serif;
+        }
+    </style>
 </head>
 
-<body>
+<body class="inter">
+    <header class="w-[1320px] mx-auto mt-12 ">
+        <nav class="flex justify-between">
+            <img class="h-10px" src="./icons/Logo.png" alt="">
+            <button class="btn h-10 w-[148px] text-lg font-medium bg-[rgba(37,37,37,0.20)] rounded">Sort by view</button>
+            <button class="btn h-10px w-20 text-lg font-medium text-white bg-[#FF1F3D] rounded">Blog</button>
+        </nav>
+        <hr class="bg-[rgba(23,23,23,0.20)] my-8">
+    </header>
 
+    <main class="w-[1320px] mx-auto">
+
+        <!-- Categories section -->
+        <section id="categories-section" class="flex justify-center gap-6"></section>
+
+        <!-- videos card section -->
+        <section id="cards-section" class="flex flex-wrap gap-6 mt-10">
+            
+        </section>
+    </main>
     <script src="./js/index.js"></script>
 </body>
 

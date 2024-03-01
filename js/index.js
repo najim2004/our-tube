@@ -10,7 +10,6 @@ const createCategories = (data) => {
         categoryContainer.innerHTML = `
             <button id="${category.category}" class="btn px-5 py-1 text-[rgba(37,37,37,0.70)] bg-[rgba(37,37,37,0.15)] rounded font-medium">${category.category}</button>
         `
-
         document.getElementById('categories-section').appendChild(categoryContainer);
         const btn = categoryContainer.children[0];
         btn.addEventListener('click', () => {
@@ -37,6 +36,12 @@ const videosCardData = async (id = 1000) => {
 }
 
 const displayVideoCards = (data) => {
+    console.log(data);
+    if (data.length===0) {
+        document.getElementById('error').classList.remove('hidden');
+    } else {
+        document.getElementById('error').classList.add('hidden');
+    }
     const cardsSection = document.getElementById('cards-section');
     cardsSection.innerHTML = '';
     data.forEach(video => {
@@ -46,7 +51,10 @@ const displayVideoCards = (data) => {
         const authors = video.authors[0];
         const profilePicture = authors['profile_picture'];
         const profileName = authors['profile_name'];
-        const verified = authors['verified']
+        let verified='';
+        if(authors['verified']){
+            verified  ='<img src="./icons/true.svg" alt="" class="">';
+        }
         const others = video.others;
         const views = others.views;
         cardDiv.innerHTML = `
@@ -55,7 +63,7 @@ const displayVideoCards = (data) => {
                 <img class="size-10 bg-gray-300 rounded-[50%]" src="${profilePicture}" alt="">
                 <div class="space-y-[10px]">
                     <h3 class="max-w-[260px] font-bold">${title}</h3>
-                    <p class="flex gap-2 text-sm">${profileName} <img src="./icons/${verified}.svg" alt="" class=""></p>
+                    <p class="flex gap-2 text-sm">${profileName} ${verified}</p>
                     <p class="text-sm"><span>${views} </span>views</p>
                 </div>
             </div>`

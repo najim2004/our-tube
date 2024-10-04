@@ -1,3 +1,5 @@
+let currentData=[];
+
 const loadCategories = async () => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/categories`);
     const data = await res.json();
@@ -5,6 +7,7 @@ const loadCategories = async () => {
 }
 
 const createCategories = (data) => {
+    
     data.forEach(category => {
         const categoryContainer = document.createElement('div');
         categoryContainer.innerHTML = `
@@ -31,12 +34,15 @@ const createCategories = (data) => {
 const videosCardData = async (id = 1000) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
+    currentData=[...data.data];
     displayVideoCards(data.data);
 
 }
 
-const displayVideoCards = (data) => {
-    console.log(data);
+const displayVideoCards = (data,isSort) => {
+    if(isSort){
+        data=data.sort((a,b)=> parseInt(b.others.views) - parseInt(a.others.views));
+    }
     if (data.length===0) {
         document.getElementById('error').classList.remove('hidden');
     } else {
@@ -69,6 +75,10 @@ const displayVideoCards = (data) => {
             </div>`
         cardsSection.appendChild(cardDiv);
     });
+}
+
+const sort=()=>{
+displayVideoCards(currentData,true)
 }
 
 function removeColor() {
